@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProdiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,3 +18,9 @@ Route::get('beranda', function () {
 Route::get('/berita/{id}/{judul}',function ($id, $judul){
     return view('berita', ['id' => $id, 'judul' => $judul]);
 });
+
+
+// membuat route ke halaman prodi index melalui controller ProdiController
+// Route::get('/prodi/index', [ProdiController::class,'index']);
+
+Route::resource('prodi',  ProdiController::class);
