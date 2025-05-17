@@ -30,7 +30,23 @@ return view("prodi.create");
 */
 public function store(Request $request)
 {
-//
+     $validateData = $request->validate([
+        'nama' => 'required|min:5|max:20',
+        'kode_prodi' => 'required|min:2|max:5',
+    ]);
+
+    $prodi = new Prodi();
+    $prodi->nama = $validateData['nama']; // $request->nama
+    $prodi->kode_prodi = $validateData['kode_prodi'];
+    $prodi->save();
+
+    // Prodi::create([
+    //     'nama' => $validateData['nama'],
+    //     'kode_prodi' => $validateData['kode_prodi']
+    // ]);
+
+    return redirect('prodi')->with('status', 
+    'Data Program Studi berhasil disimpan');
 }
 
 /**
