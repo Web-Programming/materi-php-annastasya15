@@ -16,6 +16,10 @@ Route::get('beranda', function () {
 );
 });
 Route::get('/berita/{id}/{judul}',function ($id, $judul){
+Route::get('/prodi/{id}/edit', [ProdiController::class, 'edit']);
+Route::put('/prodi/{id}', [ProdiController::class, 'update']);
+Route::get('/prodi/{id}', [ProdiController::class, 'show']);
+
     return view('berita', ['id' => $id, 'judul' => $judul]);
 });
 
