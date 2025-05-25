@@ -55,12 +55,20 @@
                   </div>
                   <div class="card-body">
                     <a href="{{ url('prodi/create') }}" class="btn btn-success" >Buat Prodi Baru</a>
+
+                    @if (session('status'))
+                      <div class="alert alert-success">
+                          {{ session('status') }}
+                      </div>
+                    @endif
+                    
                     <table class="table table-bordered table-striped">
                       <thead>
                         <tr>
                           <th>No</th>
                           <th>Nama Prodi</th>
                           <th>Kode Prodi</th>
+                          <th>Logo</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -70,11 +78,20 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $prodi->nama }}</td>
                             <td>{{ $prodi->kode_prodi }}</td>
+                            <td>{{ $prodi->logo }}
+                              @if ($prodi->logo)
+                                <img src="{{ asset('images/'.$prodi->logo) }}" alt="" width="100px">
+                              @else
+                                <p>Logo tidak ada</p>
+                              @endif
+                            </td>
                             <td>
-                              <a href="{{ url('prodi/'.$prodi->id.'/edit') }}" >Edit</a>
+                              
                               <form action="{{ url('prodi/'.$prodi->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
+                                <a href="{{ url('prodi/'.$prodi->id) }}" class="btn btn-link" >Detail</a>
+                                <a href="{{ url('prodi/'.$prodi->id.'/edit') }}"  class="btn btn-link" >Edit</a>
                                 <button type="submit" class="btn btn-link">Delete</button>
                               </form>
                             </td>
