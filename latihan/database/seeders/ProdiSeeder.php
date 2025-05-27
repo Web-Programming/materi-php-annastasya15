@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Prodi;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Prodi;
 
 class ProdiSeeder extends Seeder
 {
@@ -14,12 +14,12 @@ class ProdiSeeder extends Seeder
     public function run(): void
     {
         Prodi::create([
-            'nama' => "sistem informasi",
-            'kode_prodi' => "SI",
+            'nama' => 'Sistem Informasi',
+            'kode_prodi' => 'SI'
         ]);
         Prodi::create([
-            'nama' => "informatika",
-            'kode_prodi' => "IF",
+            'nama' => 'Informatika',
+            'kode_prodi' => 'IF'
         ]);
     }
 }

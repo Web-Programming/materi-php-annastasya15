@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', "Halaman List Prodi")
+@section('title', "Dashboard - Home")
 
 @section('content')
         <!--begin::App Content Header-->
@@ -55,12 +55,20 @@
                   </div>
                   <div class="card-body">
                     <a href="{{ url('prodi/create') }}" class="btn btn-success" >Buat Prodi Baru</a>
+
+                    @if (session('status'))
+                      <div class="alert alert-success">
+                          {{ session('status') }}
+                      </div>
+                    @endif
+                    
                     <table class="table table-bordered table-striped">
                       <thead>
                         <tr>
                           <th>No</th>
                           <th>Nama Prodi</th>
                           <th>Kode Prodi</th>
+                          <th>Logo</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -71,11 +79,19 @@
                             <td>{{ $prodi->nama }}</td>
                             <td>{{ $prodi->kode_prodi }}</td>
                             <td>
-                              <a href="{{ url('prodi/'.$prodi->id.'/edit') }}" >Edit</a>
+                              @if ($prodi->logo)
+                                <img src="{{ asset('images/'.$prodi->logo) }}" alt="" width="100px">
+                              @else
+                                <p>Logo tidak ada</p>
+                              @endif
+                            </td>
+                            <td>
                               <form action="{{ url('prodi/'.$prodi->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-link">Delete</button>
+                                <a href="{{ url('prodi/'.$prodi->id) }}" class="btn btn-info btn-sm">Detail</a>
+                                <a href="{{ url('prodi/'.$prodi->id.'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                               </form>
                             </td>
                           </tr>
