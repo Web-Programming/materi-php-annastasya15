@@ -61,4 +61,8 @@ class FakultasController extends Controller
     {
         //
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 403b5b3d274c06237d397977337dd2c11b122bf6

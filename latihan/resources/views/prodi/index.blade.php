@@ -78,7 +78,15 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $prodi->nama }}</td>
                             <td>{{ $prodi->kode_prodi }}</td>
+                            <td>{{ $prodi->logo }}
+                              @if ($prodi->logo)
+                                <img src="{{ asset('images/'.$prodi->logo) }}" alt="" width="100px">
+                              @else
+                                <p>Logo tidak ada</p>
+                              @endif
+                            </td>
                             <td>
+<<<<<<< HEAD
                               @if ($prodi->logo)
                                 <img src="{{ asset('images/'.$prodi->logo) }}" alt="" width="100px">
                               @else
@@ -92,6 +100,15 @@
                                 <a href="{{ url('prodi/'.$prodi->id) }}" class="btn btn-info btn-sm">Detail</a>
                                 <a href="{{ url('prodi/'.$prodi->id.'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+=======
+                              
+                              <form action="{{ url('prodi/'.$prodi->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ url('prodi/'.$prodi->id) }}" class="btn btn-link" >Detail</a>
+                                <a href="{{ url('prodi/'.$prodi->id.'/edit') }}"  class="btn btn-link" >Edit</a>
+                                <button type="submit" class="btn btn-link">Delete</button>
+>>>>>>> 403b5b3d274c06237d397977337dd2c11b122bf6
                               </form>
                             </td>
                           </tr>
